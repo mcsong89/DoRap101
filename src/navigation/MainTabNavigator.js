@@ -1,32 +1,32 @@
 /* eslint-disable */
-import React, { Component } from 'react';
-import { StyleSheet, Platform } from 'react-native';
-import { Icon } from 'native-base';
+import React, { Component } from "react";
+import { StyleSheet, Platform } from "react-native";
+import { Icon } from "native-base";
 import {
   createMaterialTopTabNavigator,
-  createAppContainer,
-} from 'react-navigation';
+  createAppContainer
+} from "react-navigation";
 
-import Feed from '../screens/Feed';
-import Camera from '../screens/Camera';
+import Feed from "../screens/Feed";
+import Camera from "../screens/Camera";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    alignItems: "center",
+    justifyContent: "center"
+  }
 });
 
 const AppTabNavigator = createMaterialTopTabNavigator(
   {
     Camera: { screen: Camera },
-    Feed: { screen: Feed },
+    Feed: { screen: Feed }
   },
   {
     animationEnabled: true,
     swipeEnabled: true,
-    initialRouteName: 'Feed',
+    initialRouteName: "Feed"
     // tabBarPosition: "bottom",
     // tabBarOptions: {
     //   style: {
@@ -46,7 +46,7 @@ const AppTabNavigator = createMaterialTopTabNavigator(
     //   showLabel: false,
     //   showIcon: true
     // }
-  },
+  }
 );
 const AppTabContainet = createAppContainer(AppTabNavigator);
 

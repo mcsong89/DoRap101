@@ -1,121 +1,133 @@
 /* eslint-disable */
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1a1917',
-    justifyContent: 'space-between',
+    backgroundColor: "#1a1917",
+    justifyContent: "space-between"
   },
   noPermissions: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 10
   },
   topBarContainer: {
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     padding: 15,
     zIndex: 100,
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
   recordDuration: {
-    color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+    justifyContent: "center",
+    alignItems: "center"
   },
   topBarInner: {
-    flexDirection: 'row',
+    flexDirection: "row",
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: "space-around"
   },
   topBarLeft: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flex: 2,
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
   topBarRight: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around"
   },
   close: {
-    color: 'white',
-    fontWeight: 'bold',
+    width: 32,
+    height: 32
   },
   topBarFlash: {
-    flex: 3,
-    color: 'white',
-    fontWeight: 'bold',
+    color: "white",
+    fontWeight: "bold"
   },
   topBarFacing: {
-    color: 'white',
-    fontWeight: 'bold',
+    width: 32,
+    height: 32
   },
   topBarCameraOff: {
-    color: 'white',
-    fontWeight: 'bold',
+    width: 32,
+    height: 32
   },
   bottomBarRecordArea: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "transparent",
+    bottom: 52
   },
   bottomBarRecordWarp: {
-    height: 80,
-    width: 80,
+    height: 72,
+    width: 72,
     borderWidth: 3,
-    borderColor: 'rgba(190, 0, 4, 1)',
-    borderRadius: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
+    borderColor: "#e83215",
+    borderRadius: 36,
+    justifyContent: "center",
+    alignItems: "center"
   },
   bottomBarRecordInner: {
-    height: 70,
-    width: 70,
-    borderRadius: 50,
-    backgroundColor: 'rgba(190, 0, 4, 1)',
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: 64,
+    width: 64,
+    borderRadius: 32,
+    backgroundColor: "#e83215",
+    justifyContent: "center",
+    alignItems: "center"
   },
   countDown: {
-    color: 'white',
-    fontSize: 35,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: 64,
+    width: 64,
+    borderRadius: 32,
+    color: "white",
+    fontSize: 44,
+    // justifyContent: "center",
+    // alignItems: "center",
+    textAlign: "center",
+    fontFamily: "Roboto"
   },
   bottomBarStop: {
-    color: 'rgba(190, 0, 4, 1)',
-    fontWeight: 'bold',
+    fontSize: 24,
+    color: "#e83215",
+    fontWeight: "bold"
   },
   cameraContainer: {
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: "space-between"
   },
   bottomBarBeatArea: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
     paddingHorizontal: 10,
-    marginBottom: 15,
+    marginBottom: 15
   },
   beatPlay: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flex: 3,
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  beatName: {
+    marginLeft: 8
+  },
+  play_list: {
+    flex: 1,
+    alignItems: "flex-end"
   },
   enabledTouch: {},
   disabledTouch: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
     paddingHorizontal: 10,
-    marginBottom: 15,
-  },
+    marginBottom: 15
+  }
 });

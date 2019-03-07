@@ -1,63 +1,42 @@
-import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
-import PropTypes from 'prop-types';
-import { ParallaxImage } from 'react-native-snap-carousel';
-import styles from '../styles/SliderEntry.style';
+/* eslint-disable */
+import React, { Component } from "react";
+import { View, Text, Image, TouchableOpacity } from "react-native";
+import PropTypes from "prop-types";
+import { ParallaxImage } from "react-native-snap-carousel";
+import styles from "../styles/SliderEntry.style";
 
 export default class SliderEntry extends Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
     even: PropTypes.bool,
     parallax: PropTypes.bool,
-    parallaxProps: PropTypes.object,
+    parallaxProps: PropTypes.object
   };
 
   get image() {
     const {
-      data: { illustration },
-      parallax,
-      parallaxProps,
+      data: { illustration, index },
       even,
+      currentIndex
     } = this.props;
 
-    return parallax ? (
-      <ParallaxImage
+    return (
+      <Image
         source={{ uri: illustration }}
-        containerStyle={[
-          styles.imageContainer,
-          even ? styles.imageContainerEven : {},
-        ]}
-        style={styles.image}
-        parallaxFactor={1}
-        showSpinner={true}
-        spinnerColor={even ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.25)'}
-        {...parallaxProps}
+        style={[styles.image, currentIndex === index ? styles.isActive : {}]}
       />
-    ) : (
-      <Image source={{ uri: illustration }} style={styles.image} />
     );
   }
 
   render() {
     const {
-      data: { title, subtitle },
-      even,
+      data: { name, description, duration },
+      even
     } = this.props;
-
-    const uppercaseTitle = title ? (
-      <Text
-        style={[styles.title, even ? styles.titleEven : {}]}
-        numberOfLines={2}
-      >
-        {title.toUpperCase()}
-      </Text>
-    ) : (
-      false
-    );
 
     return (
       <TouchableOpacity
-        activeOpacity={1}
+        activeOpacity={0.8}
         style={styles.slideInnerContainer}
         onPress={this.props.setData}
       >
@@ -66,11 +45,21 @@ export default class SliderEntry extends Component {
           style={[styles.imageContainer, even ? styles.imageContainerEven : {}]}
         >
           {this.image}
-          <View
-            style={[styles.radiusMask, even ? styles.radiusMaskEven : {}]}
-          />
+          <View style={styles.cardInfo}>
+            <Text style={styles.cardDuration}>{duration}</Text>
+            <Text style={styles.cardDescription}>{description}</Text>
+            <View style={styles.profileArea}>
+              <View style={styles.avata}>
+                <Image
+                  source={require("../../assets/images/feeds/oval.jpg")}
+                  style={styles.avata}
+                />
+              </View>
+              <Text style={styles.avataName}>{name}</Text>
+            </View>
+          </View>
         </View>
-        <View
+        {/* <View
           style={[styles.textContainer, even ? styles.textContainerEven : {}]}
         >
           {uppercaseTitle}
@@ -80,7 +69,7 @@ export default class SliderEntry extends Component {
           >
             {subtitle}
           </Text>
-        </View>
+        </View> */}
       </TouchableOpacity>
     );
   }
