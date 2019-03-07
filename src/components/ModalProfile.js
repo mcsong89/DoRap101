@@ -1,12 +1,6 @@
 /* eslint-disable */
 import React, { Component } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TouchableHighlight,
-  ScrollView
-} from "react-native";
+import { View, Text, TouchableOpacity, TouchableHighlight } from "react-native";
 import Modal from "react-native-modal";
 import styles, { colors } from "../styles/modal.style";
 import { Container, Content, Icon, Button } from "native-base";
@@ -127,39 +121,34 @@ export default class modalProfile extends Component {
     ];
 
     return (
-      <ScrollView>
-        <FlatGrid
-          itemDimension={130}
-          items={items}
-          style={styles.gridView}
-          // staticDimension={300}
-          // fixed
-          // spacing={20}
-          renderItem={({ item, index }) => (
-            <View style={styles.slideInnerContainer}>
-              <View style={styles.imageContainer}>
-                <Image
-                  source={{ uri: item.illustration }}
-                  style={styles.image}
-                />
-                <View style={styles.cardInfo}>
-                  <Text style={styles.cardDuration}>{item.duration}</Text>
-                  <Text style={styles.cardDescription}>{item.description}</Text>
-                  <View style={styles.profileArea}>
-                    <View style={styles.avata}>
-                      <Image
-                        source={require("../../assets/images/feeds/oval.jpg")}
-                        style={styles.avata}
-                      />
-                    </View>
-                    <Text style={styles.avataName}>{item.name}</Text>
+      <FlatGrid
+        itemDimension={130}
+        items={items}
+        style={styles.gridView}
+        // staticDimension={300}
+        // fixed
+        // spacing={20}
+        renderItem={({ item, index }) => (
+          <View style={styles.slideInnerContainer}>
+            <View style={styles.imageContainer}>
+              <Image source={{ uri: item.illustration }} style={styles.image} />
+              <View style={styles.cardInfo}>
+                <Text style={styles.cardDuration}>{item.duration}</Text>
+                <Text style={styles.cardDescription}>{item.description}</Text>
+                <View style={styles.profileArea}>
+                  <View style={styles.avata}>
+                    <Image
+                      source={require("../../assets/images/feeds/oval.jpg")}
+                      style={styles.avata}
+                    />
                   </View>
+                  <Text style={styles.avataName}>{item.name}</Text>
                 </View>
               </View>
             </View>
-          )}
-        />
-      </ScrollView>
+          </View>
+        )}
+      />
     );
   }
 
