@@ -41,6 +41,31 @@ export default StyleSheet.create({
   empty: {
     flex: 1
   },
+  beatClose: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-start"
+  },
+  contentsBeat: {
+    backgroundColor: "transparent",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 12
+  },
+  beatItems: {
+    alignItems: "center"
+  },
+  beatLabel: {
+    color: "#ffffff",
+    fontSize: 12,
+    fontFamily: "NotoSansKR-Medium"
+  },
+  beatImage: {
+    width: 32,
+    height: 32
+  },
   notiTopTitle: {
     flex: 3,
     alignItems: "center",
@@ -160,54 +185,15 @@ export default StyleSheet.create({
     justifyContent: "space-around",
     marginTop: 4
   },
-  views: {
+  profileItems: {
     alignItems: "center"
   },
-  viewsCount: {
+  profileCount: {
     color: "#ffffff",
     fontSize: 16,
     fontFamily: "NotoSansKR-Regular"
   },
-  viewsLabel: {
-    color: "rgba(255, 255, 255, 0.5)",
-    fontSize: 12,
-    fontFamily: "NotoSansKR-Regular"
-  },
-  songs: {
-    alignItems: "center"
-  },
-  songsCount: {
-    color: "#ffffff",
-    fontSize: 16,
-    fontFamily: "NotoSansKR-Regular"
-  },
-  songsLabel: {
-    color: "rgba(255, 255, 255, 0.5)",
-    fontSize: 12,
-    fontFamily: "NotoSansKR-Regular"
-  },
-  followers: {
-    alignItems: "center"
-  },
-  followersCount: {
-    color: "#ffffff",
-    fontSize: 16,
-    fontFamily: "NotoSansKR-Regular"
-  },
-  followersLabel: {
-    color: "rgba(255, 255, 255, 0.5)",
-    fontSize: 12,
-    fontFamily: "NotoSansKR-Regular"
-  },
-  following: {
-    alignItems: "center"
-  },
-  followingCount: {
-    color: "#ffffff",
-    fontSize: 16,
-    fontFamily: "NotoSansKR-Regular"
-  },
-  followingLabel: {
+  profileItemsLabel: {
     color: "rgba(255, 255, 255, 0.5)",
     fontSize: 12,
     fontFamily: "NotoSansKR-Regular"

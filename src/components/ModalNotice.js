@@ -1,12 +1,6 @@
 /* eslint-disable */
 import React, { Component } from "react";
-import {
-  Alert,
-  View,
-  Text,
-  TouchableOpacity,
-  TouchableHighlight
-} from "react-native";
+import { Alert, View, Text, TouchableOpacity } from "react-native";
 import Modal from "react-native-modal";
 import styles, { colors } from "../styles/modal.style";
 import { Container, Content, Icon, Button } from "native-base";
@@ -32,12 +26,12 @@ export default class modalNotice extends Component {
                 <Text style={styles.notiTitleLabel}>알림</Text>
               </View>
               <View style={styles.notiClose}>
-                <TouchableHighlight onPress={this.props.setModal}>
+                <TouchableOpacity onPress={this.props.setModal}>
                   <Image
                     source={require("../../assets/images/notice/delete.svg")}
                     style={styles.close}
                   />
-                </TouchableHighlight>
+                </TouchableOpacity>
               </View>
             </View>
             <View style={styles.contentsItem}>

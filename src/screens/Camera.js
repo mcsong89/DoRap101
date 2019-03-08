@@ -35,6 +35,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators as videoActions } from "../reducers/cameraReducer";
 import Image from "react-native-remote-svg";
+import ModalBeat from "../components/ModalBeat";
 
 import Mask from "../components/Mask";
 import Glasses from "../components/Glasses";
@@ -83,7 +84,6 @@ class CameraComponent extends Component {
       type: "front",
       isCameraOn: "on",
       flash: "off",
-      readyRecord: false,
       whiteBalance: "auto",
       ratio: "16:9",
       autoFocus: "on",
@@ -94,7 +94,8 @@ class CameraComponent extends Component {
       recordingId: 1,
       timer: 3,
       isPlaying: false,
-      interval: null
+      interval: null,
+      beatmodalVisible: false
     };
 
     // this.onFacesDetected = this.onFacesDetected.bind(this);
@@ -136,7 +137,6 @@ class CameraComponent extends Component {
     if (currentProps.camera.elapsedTime !== 0 || this.state.timer < 3) {
       currentProps.restartTimer();
       this.setState({
-        readyRecord: false,
         timer: 3
       });
     }
@@ -216,11 +216,10 @@ class CameraComponent extends Component {
   };
 
   toggleRecording = () => {
-    this.setState({
-      readyRecord: this.state.readyRecord === false ? true : false
-    });
+    const currentProps = this.props;
+    currentProps.readyRecord();
 
-    if (this.state.readyRecord) {
+    if (currentProps.camera.isReady) {
       this.stopRecording();
     } else {
       this.readyRecording();
@@ -346,7 +345,6 @@ class CameraComponent extends Component {
         this.toggleBeat();
       }
       this.setState({
-        readyRecord: false,
         timer: 3
       });
     }
@@ -363,6 +361,10 @@ class CameraComponent extends Component {
   //     this.camera.resumePreview();
   //   }
   // }
+
+  setBeatModalVisible(visible) {
+    this.setState({ beatmodalVisible: visible });
+  }
 
   renderNoPermissions() {
     return (
@@ -414,8 +416,10 @@ class CameraComponent extends Component {
 
   renderBottomBar() {
     const { elapsedTime, timerDuration } = this.props.camera;
+    const currentProps = this.props;
+
     return (
-      <View>
+      <View style={styles.bottomContainer}>
         <View style={styles.bottomBarRecordArea}>
           {this.state.timer >= 0 ? null : (
             <Text style={styles.recordDuration}>
@@ -426,7 +430,7 @@ class CameraComponent extends Component {
             onPress={this.toggleRecording}
             style={styles.bottomBarRecordWarp}
           >
-            {this.state.readyRecord ? (
+            {currentProps.camera.isReady ? (
               this.state.timer >= 0 ? (
                 <View style={styles.bottomBarRecordInner}>
                   <Text style={styles.countDown}>{this.state.timer}</Text>
@@ -441,11 +445,11 @@ class CameraComponent extends Component {
         </View>
         <View
           style={
-            this.state.readyRecord
+            currentProps.camera.isReady
               ? styles.disabledTouch
               : styles.bottomBarBeatArea
           }
-          pointerEvents={this.state.readyRecord ? "none" : "auto"}
+          pointerEvents={currentProps.camera.isReady ? "none" : "auto"}
         >
           <View style={styles.beatPlay}>
             <TouchableOpacity onPress={this.toggleBeat}>
@@ -454,7 +458,7 @@ class CameraComponent extends Component {
                   source={require("../../assets/images/record/pause.svg")}
                   size={32}
                   style={{
-                    opacity: this.state.readyRecord ? 0.5 : 1
+                    opacity: currentProps.camera.isReady ? 0.5 : 1
                   }}
                 />
               ) : (
@@ -462,7 +466,7 @@ class CameraComponent extends Component {
                   source={require("../../assets/images/record/play.svg")}
                   size={32}
                   style={{
-                    opacity: this.state.readyRecord ? 0.5 : 1
+                    opacity: currentProps.camera.isReady ? 0.5 : 1
                   }}
                 />
               )}
@@ -471,7 +475,7 @@ class CameraComponent extends Component {
               style={[
                 styles.beatName,
                 {
-                  color: this.state.readyRecord
+                  color: currentProps.camera.isReady
                     ? "rgba(255, 255, 255, 0.5)"
                     : "white",
                   fontSize: 20
@@ -483,12 +487,16 @@ class CameraComponent extends Component {
           </View>
 
           <View style={styles.play_list}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                this.setBeatModalVisible(true);
+              }}
+            >
               <Image
                 source={require("../../assets/images/record/play_list.svg")}
                 size={32}
                 style={{
-                  opacity: this.state.readyRecord ? 0.5 : 1
+                  opacity: currentProps.camera.isReady ? 0.5 : 1
                 }}
               />
             </TouchableOpacity>
@@ -560,6 +568,17 @@ class CameraComponent extends Component {
     }
   }
 
+  renderBeatModal() {
+    return (
+      <ModalBeat
+        isVisible={this.state.beatmodalVisible}
+        setModal={() => {
+          this.setState({ beatmodalVisible: false });
+        }}
+      />
+    );
+  }
+
   render() {
     const cameraOnScreenContent = this.state.permissionsGranted
       ? this.renderCameraOn()
@@ -570,7 +589,10 @@ class CameraComponent extends Component {
       : this.renderNoPermissions();
 
     return this.state.isCameraOn === "on" ? (
-      <View style={styles.container}>{cameraOnScreenContent}</View>
+      <View style={styles.container}>
+        {cameraOnScreenContent}
+        {this.renderBeatModal()}
+      </View>
     ) : (
       <View style={styles.container}>{cameraOffScreenContent}</View>
     );
@@ -592,6 +614,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    readyRecord: bindActionCreators(videoActions.readyRecord, dispatch),
     startTimer: bindActionCreators(videoActions.startTimer, dispatch),
     restartTimer: bindActionCreators(videoActions.restartTimer, dispatch),
     addSecond: bindActionCreators(videoActions.addSecond, dispatch)

@@ -60,11 +60,15 @@ export default StyleSheet.create({
     width: 32,
     height: 32
   },
+  bottomContainer: {
+    paddingHorizontal: 16
+  },
   bottomBarRecordArea: {
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "transparent",
-    bottom: 52
+    marginBottom: 48
   },
   bottomBarRecordWarp: {
     height: 72,
@@ -107,8 +111,8 @@ export default StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-end",
-    paddingHorizontal: 10,
-    marginBottom: 15
+    backgroundColor: "transparent",
+    marginBottom: 16
   },
   beatPlay: {
     flex: 3,
@@ -127,7 +131,7 @@ export default StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-end",
-    paddingHorizontal: 10,
-    marginBottom: 15
+    backgroundColor: "transparent",
+    marginBottom: 16
   }
 });

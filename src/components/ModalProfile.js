@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, TouchableHighlight } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import Modal from "react-native-modal";
 import styles, { colors } from "../styles/modal.style";
 import { Container, Content, Icon, Button } from "native-base";
@@ -187,12 +187,12 @@ export default class modalProfile extends Component {
                   />
                 </TouchableOpacity>
 
-                <TouchableHighlight onPress={this.props.setModal}>
+                <TouchableOpacity onPress={this.props.setModal}>
                   <Image
                     source={require("../../assets/images/profile/delete.svg")}
                     style={styles.close}
                   />
-                </TouchableHighlight>
+                </TouchableOpacity>
               </View>
             </View>
 
@@ -219,21 +219,21 @@ export default class modalProfile extends Component {
                 <Text style={styles.ranking}>1위</Text>
               </View>
               <View style={styles.avataDescription}>
-                <View style={styles.views}>
-                  <Text style={styles.viewsCount}>93,564,443</Text>
-                  <Text style={styles.viewsLabel}>조회수</Text>
+                <View style={styles.profileItems}>
+                  <Text style={styles.profileCount}>93,564,443</Text>
+                  <Text style={styles.profileItemsLabel}>조회수</Text>
                 </View>
-                <View style={styles.songs}>
-                  <Text style={styles.songsCount}>48</Text>
-                  <Text style={styles.songsLabel}>작곡수</Text>
+                <View style={styles.profileItems}>
+                  <Text style={styles.profileCount}>48</Text>
+                  <Text style={styles.profileItemsLabel}>작곡수</Text>
                 </View>
-                <View style={styles.followers}>
-                  <Text style={styles.followersCount}>254</Text>
-                  <Text style={styles.followersLabel}>팔로워</Text>
+                <View style={styles.profileItems}>
+                  <Text style={styles.profileCount}>254</Text>
+                  <Text style={styles.profileItemsLabel}>팔로워</Text>
                 </View>
-                <View style={styles.following}>
-                  <Text style={styles.followingCount}>1,647</Text>
-                  <Text style={styles.followingLabel}>팔로잉</Text>
+                <View style={styles.profileItems}>
+                  <Text style={styles.profileCount}>1,647</Text>
+                  <Text style={styles.profileItemsLabel}>팔로잉</Text>
                 </View>
               </View>
             </View>
